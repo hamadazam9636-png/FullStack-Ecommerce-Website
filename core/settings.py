@@ -154,11 +154,15 @@ CORS_ALLOW_CREDENTIALS = True
 if IS_PRODUCTION:
     CSRF_TRUSTED_ORIGINS = [
         'https://fullstack-ecommerce-website-production.up.railway.app',
+        'https://ecommerce-frontend-ten-tawny.vercel.app',
     ]
 else:
     CSRF_TRUSTED_ORIGINS = [
         'http://localhost:8000',
         'http://127.0.0.1:8000',
+        'https://fullstack-ecommerce-website-production.up.railway.app',
+        'https://ecommerce-frontend-ten-tawny.vercel.app',
+
     ]
 
 CSRF_COOKIE_SECURE = IS_PRODUCTION
