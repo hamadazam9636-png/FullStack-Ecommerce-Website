@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG =False
+DEBUG = not IS_PRODUCTION
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','fullstack-ecommerce-website-production.up.railway.app']
 

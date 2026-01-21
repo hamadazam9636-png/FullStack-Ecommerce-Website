@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Product
 from .serializers import ProductSerializer
-
+from django.views.decorators.csrf import csrf_exempt
 class ProductViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing products
@@ -60,6 +60,7 @@ class CustomAuthToken(ObtainAuthToken):
     """
     Custom login view that returns token for React admin login.
     """
+    @csrf_exempt
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
