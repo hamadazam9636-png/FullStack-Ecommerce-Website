@@ -5,6 +5,8 @@ Django settings for core project.
 import os
 from pathlib import Path
 
+IS_PRODUCTION = os.environ.get('RAILWAY_ENV') == 'production'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -139,12 +141,24 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.railway.app',
-    'https://*.onrender.com',
-]
+IS_PRODUCTION = False 
+if IS_PRODUCTION:
+    CSRF_TRUSTED_ORIGINS = [
+        'https://*.railway.app',
+        'https://*.onrender.com',
+    ]
+else:
+    CSRF_TRUSTED_ORIGINS = [
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+    ]
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = IS_PRODUCTION
+SESSION_COOKIE_SECURE = IS_PRODUCTION
+
+if IS_PRODUCTION:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+else:
+    SECURE_PROXY_SSL_HEADER = None
+
