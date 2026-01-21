@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = not IS_PRODUCTION
+DEBUG =False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','fullstack-ecommerce-website-production.up.railway.app']
 
@@ -142,7 +142,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3001",
     "http://127.0.0.1:3001",
-    'https://fullstack-ecommerce-website-production.up.railway.app'
+    
 ]
 
 CORS_ALLOW_CREDENTIALS = True
