@@ -21,10 +21,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
 # DEBUG = True
 DEBUG = not IS_PRODUCTION
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','fullstack-ecommerce-website-production.up.railway.app']
 
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 
 # Application definition
 
