@@ -75,8 +75,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database (Railway PostgreSQL)
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600
+        default=os.environ.get('DATABASE_URL'),  # Railway ka DATABASE_URL
+        conn_max_age=600,
+        ssl_require=True  # PostgreSQL SSL ke liye
     )
 }
 
