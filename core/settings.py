@@ -4,22 +4,27 @@ Django settings for core project.
 
 import os
 from pathlib import Path
+import dj_database_url
 
-IS_PRODUCTION = os.environ.get('RAILWAY_ENV') == 'production'
+IS_PRODUCTION = os.environ.get("RAILWAY_ENV") == "production"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-your-secret-key-change-in-production'
+SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = not IS_PRODUCTION 
+DEBUG = not IS_PRODUCTION
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com',]
-ALLOWED_HOSTS = ['*']
+
+
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -71,12 +76,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.config(
+        default="sqlite:///db.sqlite3",
+        conn_max_age=600,
+        ssl_require=IS_PRODUCTION,
+    )
 }
 
 
