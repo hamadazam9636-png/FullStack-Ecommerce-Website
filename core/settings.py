@@ -15,7 +15,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-your-secret-key-change-in-production'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = not IS_PRODUCTION 
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com',]
 ALLOWED_HOSTS = ['*']
@@ -141,11 +142,11 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-IS_PRODUCTION = False 
+IS_PRODUCTION = True  # Railway par deploy ke liye
+
 if IS_PRODUCTION:
     CSRF_TRUSTED_ORIGINS = [
-        'https://*.railway.app',
-        'https://*.onrender.com',
+        'https://fullstack-ecommerce-website-production.up.railway.app',
     ]
 else:
     CSRF_TRUSTED_ORIGINS = [
@@ -153,12 +154,8 @@ else:
         'http://127.0.0.1:8000',
     ]
 
-
 CSRF_COOKIE_SECURE = IS_PRODUCTION
 SESSION_COOKIE_SECURE = IS_PRODUCTION
 
-if IS_PRODUCTION:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-else:
-    SECURE_PROXY_SSL_HEADER = None
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if IS_PRODUCTION else None
 
