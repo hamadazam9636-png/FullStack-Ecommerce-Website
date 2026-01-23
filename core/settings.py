@@ -30,7 +30,7 @@ if ENVIRONMENT == "development":
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','hadi-store.up.railway.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','hadi-store.up.railway.app']
 CSRF_TRUSTED_ORIGINS = [ 'https://hadi-store.up.railway.app' ]
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
@@ -157,17 +157,17 @@ REST_FRAMEWORK = {
 }
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
-    # "https://ecommerce-frontend-ten-tawny.vercel.app",
-    # "https://hadi-store.up.railway.app",
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+#     "http://localhost:3001",
+#     "http://127.0.0.1:3001",
+#     "https://ecommerce-frontend-ten-tawny.vercel.app",
+#     "https://hadi-store.up.railway.app",
     
-]
+# ]
 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 
 
