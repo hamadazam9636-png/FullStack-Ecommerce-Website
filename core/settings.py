@@ -119,6 +119,8 @@ if os.getenv("DATABASE_URL"):
         conn_max_age=600,
         ssl_require=True
     )
+else:
+    print("DATABASE_URL missing, using default SQLite")
 
 
 # Password validation
@@ -154,7 +156,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
