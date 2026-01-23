@@ -185,6 +185,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://hadi-store.up.railway.app",
     
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
 
