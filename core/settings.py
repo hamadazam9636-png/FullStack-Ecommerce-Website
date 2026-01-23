@@ -30,7 +30,7 @@ if ENVIRONMENT == "development":
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','fullstack-ecommerce-website-production.up.railway.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','hadi-store.up.railway.app/']
 
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
@@ -172,14 +172,14 @@ CORS_ALLOW_CREDENTIALS = True
 
 if IS_PRODUCTION:
     CSRF_TRUSTED_ORIGINS = [
-        'https://fullstack-ecommerce-website-production.up.railway.app',
+        'https://hadi-store.up.railway.app/',
         'https://ecommerce-frontend-ten-tawny.vercel.app',
     ]
 else:
     CSRF_TRUSTED_ORIGINS = [
         'http://localhost:8000',
         'http://127.0.0.1:8000',
-        'https://fullstack-ecommerce-website-production.up.railway.app',
+        'https://hadi-store.up.railway.app/',
         'https://ecommerce-frontend-ten-tawny.vercel.app',
 
     ]
