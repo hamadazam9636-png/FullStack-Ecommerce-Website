@@ -35,7 +35,7 @@ else:
 ALLOWED_HOSTS = ["*"]
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','hadi-store.up.railway.app']
-CSRF_TRUSTED_ORIGINS = [ 'https://hadi-store.up.railway.app' ]
+CSRF_TRUSTED_ORIGINS = [ 'https://hadi-store.up.railway.app', 'https://ecommerce-frontend-ten-tawny.vercel.app' ]
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 
