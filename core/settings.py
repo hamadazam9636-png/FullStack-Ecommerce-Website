@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -161,8 +162,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3001",
     "http://127.0.0.1:3001",
-    "https://ecommerce-frontend-ten-tawny.vercel.app",
-    "https://hadi-store.up.railway.app",
+    # "https://ecommerce-frontend-ten-tawny.vercel.app",
+    # "https://hadi-store.up.railway.app",
     
 ]
 
