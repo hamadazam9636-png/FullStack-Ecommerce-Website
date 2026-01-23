@@ -31,7 +31,7 @@ else:
     DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','hadi-store.up.railway.app']
-
+CSRF_TRUSTED_ORIGINS = [ 'https://hadi-store.up.railway.app' ]
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 
@@ -170,19 +170,19 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 
-if IS_PRODUCTION:
-    CSRF_TRUSTED_ORIGINS = [
-        'https://hadi-store.up.railway.app',
-        'https://ecommerce-frontend-ten-tawny.vercel.app',
-    ]
-else:
-    CSRF_TRUSTED_ORIGINS = [
-        'http://localhost:8000',
-        'http://127.0.0.1:8000',
-        'https://hadi-store.up.railway.app',
-        'https://ecommerce-frontend-ten-tawny.vercel.app',
+# if IS_PRODUCTION:
+#     CSRF_TRUSTED_ORIGINS = [
+#         'https://hadi-store.up.railway.app',
+#         'https://ecommerce-frontend-ten-tawny.vercel.app',
+#     ]
+# else:
+#     CSRF_TRUSTED_ORIGINS = [
+#         'http://localhost:8000',
+#         'http://127.0.0.1:8000',
+#         'https://hadi-store.up.railway.app',
+#         'https://ecommerce-frontend-ten-tawny.vercel.app',
 
-    ]
+#     ]
 
 CSRF_COOKIE_SECURE = IS_PRODUCTION
 SESSION_COOKIE_SECURE = IS_PRODUCTION
