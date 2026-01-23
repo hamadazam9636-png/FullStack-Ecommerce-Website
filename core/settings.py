@@ -183,11 +183,21 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3001",
     "https://ecommerce-frontend-ten-tawny.vercel.app",
     "https://hadi-store.up.railway.app",
-    
 ]
-CORS_ALLOW_ALL_ORIGINS = True
 
+# Remove CORS_ALLOW_ALL_ORIGINS - use specific origins instead for security
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 
 
