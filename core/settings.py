@@ -5,6 +5,10 @@ Django settings for core project.
 import os
 from pathlib import Path
 import dj_database_url
+from environ import Env
+env = Env()
+Env.read_env()
+ENVIRONMENT= env("ENVIRONMENT", default="production")
 
 IS_PRODUCTION = os.environ.get("RAILWAY_ENV", "development") == "production"
 
@@ -13,13 +17,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
+# SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
+SECRET_KEY = env("SECRET_KEY")
 
-
+ENCRYPT_KEY = env("ENCRYPT_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = not IS_PRODUCTION
+if ENVIRONMENT == "development":
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','fullstack-ecommerce-website-production.up.railway.app']
 
@@ -75,13 +83,23 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default="sqlite:///db.sqlite3",
+#         conn_max_age=600,
+#         ssl_require=IS_PRODUCTION,
+#     )
+# }
 DATABASES = {
-    "default": dj_database_url.config(
-        default="sqlite:///db.sqlite3",
-        conn_max_age=600,
-        ssl_require=IS_PRODUCTION,
-    )
+    'default':{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+POSTGRES_LOCALLY = False
+if ENVIRONMENT == "production" or POSTGRES_LOCALLY == True:
+    DATABASES['default' ]= dj_database_url.parse(env('DATABASE_URL'))
 
 
 # Password validation
