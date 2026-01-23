@@ -8,7 +8,9 @@ import dj_database_url
 from environ import Env
 env = Env()
 Env.read_env()
-ENVIRONMENT= env("ENVIRONMENT", default="production")
+# ENVIRONMENT= env("ENVIRONMENT", default="production")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
 
 IS_PRODUCTION = os.environ.get("RAILWAY_ENV", "development") == "production"
 
@@ -30,7 +32,9 @@ if ENVIRONMENT == "development":
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','hadi-store.up.railway.app']
+ALLOWED_HOSTS = ["*"]
+
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','hadi-store.up.railway.app']
 CSRF_TRUSTED_ORIGINS = [ 'https://hadi-store.up.railway.app' ]
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
@@ -51,10 +55,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,16 +96,29 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         ssl_require=IS_PRODUCTION,
 #     )
 # }
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# POSTGRES_LOCALLY = False
+# if ENVIRONMENT == "production" or POSTGRES_LOCALLY == True:
+#     DATABASES['default' ]= dj_database_url.parse(env('DATABASE_URL'))
 DATABASES = {
-    'default':{
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-POSTGRES_LOCALLY = False
-if ENVIRONMENT == "production" or POSTGRES_LOCALLY == True:
-    DATABASES['default' ]= dj_database_url.parse(env('DATABASE_URL'))
+if os.getenv("DATABASE_URL"):
+    DATABASES['default'] = dj_database_url.parse(
+        os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 
 
 # Password validation
