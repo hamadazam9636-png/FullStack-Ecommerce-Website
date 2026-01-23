@@ -30,7 +30,7 @@ if ENVIRONMENT == "development":
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','hadi-store.up.railway.app/']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000','.railway.app','.onrender.com','hadi-store.up.railway.app']
 
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
@@ -162,7 +162,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001",
     "http://127.0.0.1:3001",
     "https://ecommerce-frontend-ten-tawny.vercel.app",
-    "https://fullstack-ecommerce-website-production.up.railway.app",
+    "https://hadi-store.up.railway.app/",
     
 ]
 
