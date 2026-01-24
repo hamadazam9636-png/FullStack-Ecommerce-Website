@@ -9,7 +9,9 @@ from environ import Env
 env = Env()
 Env.read_env()
 # ENVIRONMENT= env("ENVIRONMENT", default="production")
-ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+# ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+ENVIRONMENT = "development"
+
 
 
 IS_PRODUCTION = os.environ.get("RAILWAY_ENV", "development") == "production"
@@ -161,16 +163,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = '/media/'
 
-if ENVIRONMENT == "production":
+# if ENVIRONMENT == "production":
+#     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# else:
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if IS_PRODUCTION:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('Cloud_Name'),
-    'API_KEY': env('Cloud_API_KEY'),
-    'API_SECRET': env('Cloud_API_SECRET')
+    'CLOUD_NAME': env('CLOUD_NAME'),
+    'API_KEY': env('CLOUD_API_KEY'),
+    'API_SECRET': env('CLOUD_API_SECRET'),
 }
+
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
