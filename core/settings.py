@@ -5,6 +5,7 @@ Django settings for core project.
 import os
 from pathlib import Path
 import dj_database_url
+import cloudinary
 from environ import Env
 env = Env()
 Env.read_env()
@@ -177,6 +178,13 @@ CLOUDINARY_STORAGE = {
     'API_KEY': env('CLOUD_API_KEY'),
     'API_SECRET': env('CLOUD_API_SECRET'),
 }
+cloudinary.config(
+    cloud_name=env('CLOUD_NAME'),
+    api_key=env('CLOUD_API_KEY'),
+    api_secret=env('CLOUD_API_SECRET'),
+    secure=True
+)
+
 
 # Default primary key field type
 
