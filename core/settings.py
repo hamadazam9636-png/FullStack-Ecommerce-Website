@@ -172,7 +172,6 @@ if IS_PRODUCTION:
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': env('CLOUD_NAME'),
     'API_KEY': env('CLOUD_API_KEY'),
@@ -224,6 +223,7 @@ CORS_ALLOW_HEADERS = [
 #         'https://ecommerce-frontend-ten-tawny.vercel.app',
 
 #     ]
+
 
 CSRF_COOKIE_SECURE = IS_PRODUCTION
 SESSION_COOKIE_SECURE = IS_PRODUCTION
